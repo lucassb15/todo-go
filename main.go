@@ -27,6 +27,7 @@ func todo(w http.ResponseWriter, r *http.Request) {
 			{Item: "Install Go", Done: true},
 			{Item: "Learn Go", Done: false},
 			{Item: "Like this video", Done: false},
+			{Item: r.PostFormValue("inputUser")},
 		},
 	}
 

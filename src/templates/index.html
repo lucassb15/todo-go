@@ -11,7 +11,10 @@
 
 <body>
     <h1>{{ .Title }}</h1>
-
+    <form action="" method="POST">
+        <input type="text" name="inputUser">
+        <input type="submit" value="Criar tarefa">
+    </form>
     <ul>
         {{ range .Todos}}
         {{ if .Done}}
