@@ -1,0 +1,17 @@
+$bg: #151515;
+$color: #a0ff9d;
+
+body{
+    background-color: $bg;
+    color: $color;
+    width: 50%;
+    margin: 0 auto;
+}
+
+ul li {
+    cursor: pointer;
+}
+
+.done {
+    text-decoration: line-through;
+}
