@@ -1,17 +1,64 @@
 $bg: #151515;
-$color: #a0ff9d;
+$color-concluded: #5dff57;
+$color-in-progress: #ff9d9d;
+$text-color: #a0ff9d;
 
-body{
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
     background-color: $bg;
-    color: $color;
-    width: 50%;
-    margin: 0 auto;
+    color: $text-color;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    height: 100vh;
 }
 
 ul li {
     cursor: pointer;
+    font-size: 1.2rem;
+    color: $color-in-progress;
+}
+
+input:focus {
+    outline: none;
+}
+
+input {
+    border: none;
+    background-color: $text-color;
+    opacity: 0.8;
+    color: $bg;
+    padding: .6rem .6rem;
+    border-radius: 5px;
+    border: 2px solid transparent;
+}
+
+input:hover {
+    border-bottom: 2px solid white;
+}
+
+.btn {
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .done {
     text-decoration: line-through;
+    transition: color .2s;
+    color: $color-concluded;
+
+}
+.idade-show {
+    color: $color-in-progress;
 }

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"text/template"
 )
 
@@ -20,28 +21,32 @@ type PageData struct {
 }
 
 func todo(w http.ResponseWriter, r *http.Request) {
-
+	tmpl = template.Must(template.ParseGlob("src/view/templates/index.html"))
 	data := PageData{
 		Title: "TODO List",
 		Todos: []Todo{
-			{Item: "Install Go", Done: true},
-			{Item: "Learn Go", Done: false},
-			{Item: "Like this video", Done: false},
-			{Item: r.PostFormValue("inputUser")},
+			{Item: "Teste 1", Done: true},
+			{Item: "Teste 2", Done: false},
+			{Item: "Teste 3", Done: false},
+			{Item: r.PostFormValue("inputUser"), Done: false},
 		},
 	}
 
 	tmpl.Execute(w, data)
 }
 
+func idade(w http.ResponseWriter, r *http.Request) {
+	tmpl = template.Must(template.ParseGlob("src/view/templates/idade.html"))
+	tmpl.ExecuteTemplate(w, "idade.html", nil)
+}
+
 func main() {
+	port := os.Getenv("PORT_WEB") // env port
 	mux := http.NewServeMux()
-	tmpl = template.Must(template.ParseFiles("src/templates/index.html"))
-
-	fileServer := http.FileServer(http.Dir("./static"))
+	fileServer := http.FileServer(http.Dir("./src/view/static"))
 	mux.Handle("/static/", http.StripPrefix("/static/", fileServer))
-	mux.HandleFunc("/todo", todo)
-
-	fmt.Println("Server started")
-	log.Fatal(http.ListenAndServe(":8000", mux))
+	mux.HandleFunc("/", todo)
+	mux.HandleFunc("/idade", idade)
+	fmt.Println("Server started at port:", port)
+	log.Fatal(http.ListenAndServe(port, mux))
 }
