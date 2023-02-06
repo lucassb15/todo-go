@@ -6,5 +6,5 @@ exports.default = () => {
     .pipe(sass({
         outputStyle: "compressed"
     })).on("error", sass.logError)
-    .pipe(dest("src/view/static/dist/css/"));
+    .pipe(dest("assets/dist/css/"));
 };
